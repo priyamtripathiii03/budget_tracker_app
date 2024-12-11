@@ -1,9 +1,8 @@
 import 'package:budget_tracker_app/controller/home_controller.dart';
-import 'package:budget_tracker_app/helper/db_helper.dart';
 import 'package:budget_tracker_app/views/components/insert_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart';
+
 
 var controller = Get.put(HomeController());
 
@@ -31,10 +30,18 @@ class HomePage extends StatelessWidget {
             child: ListTile(
               leading: Text(controller.budgetList[index].id.toString()),
               title: Text(controller.budgetList[index].amount.toString()),
-              subtitle: Text(controller.budgetList[index].category!),
-              trailing: IconButton(onPressed: (){
-                controller.deleteData(controller.budgetList[index].id!);
-              }, icon: const Icon(Icons.delete),),
+              subtitle: Text("${controller.budgetList[index].category!} - ${controller.budgetList[index].date!}"),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(onPressed: (){
+                    editBox(context, controller.budgetList[index]);
+                  }, icon: const Icon(Icons.edit),),
+                  IconButton(onPressed: (){
+                    controller.deleteData(controller.budgetList[index].id!);
+                  }, icon: const Icon(Icons.delete),),
+                ],
+              ),
             ),
           ),
         ),
@@ -42,7 +49,8 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           insertBox(context);
-
+          controller.txtCategory.clear();
+          controller.txtAmount.clear();
         },
         child: const Icon(Icons.add),
       ),

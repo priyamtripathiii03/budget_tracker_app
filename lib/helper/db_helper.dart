@@ -68,4 +68,20 @@ class DbHelper {
     db!.rawDelete(query,args);
   }
 
+//   update
+
+ Future<void> updateRecord(int id,int isIncome,double amount,String date,String category)
+ async {
+   try{
+     Database? db = await database;
+     log('message');
+     String query = '''UPDATE $_tableName SET amount = ?,category = ?, isIncome = ?, date = ? WHERE id = ?''';
+     List args = [amount,category,isIncome,date,id];
+     await db!.rawUpdate(query,args);
+   }catch(e)
+   {
+     log(e.toString());
+   }
+ }
+
 }
