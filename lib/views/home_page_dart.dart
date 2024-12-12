@@ -13,222 +13,261 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Index for BottomNavigationBar
   int _selectedIndex = 0;
 
-  // Pages for Bottom Navigation
-  final List<Widget> _pages = [
+  final List<Widget> _pages = <Widget>[
     Center(child: Text("Home Page", style: TextStyle(fontSize: 30))),
-    Center(child: Text("Search Page", style: TextStyle(fontSize: 30))),
+    Center(child: Text("Income Page", style: TextStyle(fontSize: 30))),
+    Center(child: Text("Expense Page", style: TextStyle(fontSize: 30))),
     Center(child: Text("Profile Page", style: TextStyle(fontSize: 30))),
   ];
 
-  // Bottom Navigation Bar item tap handler
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index; // Update the selected index
+      _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         elevation: 12,
-         shadowColor: Colors.black.withOpacity(0.3),
-         backgroundColor: Colors.blueAccent,
-         title: const Text(
-           "Namaste, Priyam...",
-           style: TextStyle(
-               fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),
-         ),
+        elevation: 12,
+        shadowColor: Colors.black.withOpacity(0.3),
+        backgroundColor: Colors.blueAccent,
+        title: const Text(
+          "Namaste, Priyam...",
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),
+        ),
         bottom: PreferredSize(
-           preferredSize: Size(double.infinity, 60),
-           child: Padding(
-             padding: const EdgeInsets.all(10.0),
-             child: TextField(
-               onChanged: (value) {
-                 controller.filterBySearch(value);
-               },
-               controller: controller.txtSearch,
-               decoration: InputDecoration(
-                 hintText: 'Search here...',
-                 hintStyle: TextStyle(color: Colors.grey.shade600),
-                 filled: true,
-                 fillColor: Colors.white,
-                 suffixIcon: IconButton(
-                   onPressed: () {
-                     controller.filterBySearch(controller.txtSearch.text);
-                   },
-                   icon: Icon(Icons.search, color: Colors.blueAccent),
-                 ),
-                 contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                 border: OutlineInputBorder(
-                   borderRadius: BorderRadius.circular(10),
-                   borderSide: BorderSide.none,
-                 ),
-               ),
-             ),
-           ),
-         ),
+          preferredSize: const Size(double.infinity, 60),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: TextField(
+              onChanged: (value) => controller.filterBySearch(value),
+              controller: controller.txtSearch,
+              decoration: InputDecoration(
+                hintText: 'Search here...',
+                hintStyle: TextStyle(color: Colors.grey.shade600),
+                filled: true,
+                fillColor: Colors.white,
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    controller.filterBySearch(controller.txtSearch.text);
+                  },
+                  icon: const Icon(Icons.search, color: Colors.blueAccent),
+                ),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Card(
-                color: Colors.green.shade100,
-                child: Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Income',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                     Obx(() =>  Text(
-                       '${controller.income}/-',
-                       style: TextStyle(
-                           fontWeight: FontWeight.w500,
-                           fontSize: 16,
-                           letterSpacing: 1),
-                     ),),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                color: Colors.red.shade100,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Expense',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    Obx(() =>   Text(
-                      '${controller.expense}/-',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          letterSpacing: 1),
-                    ),),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                color: Colors.grey.shade300,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Balance',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                     Obx(() =>  Text(
-                       '${controller.balance}/-',
-                       style: TextStyle(
-                           fontWeight: FontWeight.w500,
-                           fontSize: 16,
-                           letterSpacing: 1),
-                     ),),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.black, Colors.blue.shade200],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              OutlinedButton(
-                onPressed: () {
-                  controller.fetchData();
-                },
-                child: Text(
-                  'All',
-                ),
-              ),
-              OutlinedButton(
-                  onPressed: () {
-                    controller.filterCategory(1);
-                  },
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Obx(
+                () => Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: controller.balance > 0
+                          ? Colors.green.shade200
+                          : Colors.red.shade200,
+                      width: 1.5,
+                    ),
+                    borderRadius: BorderRadius.circular(25),
+                    gradient: controller.balance > 0
+                        ? LinearGradient(colors: [
+                            Colors.green.shade400,
+                            Colors.green.shade100,
+                            Colors.white
+                          ])
+                        : LinearGradient(colors: [
+                            Colors.red.shade400,
+                            Colors.red.shade100,
+                            Colors.white
+                          ]),
+                  ),
+                  padding: const EdgeInsets.all(12),
                   child: Text(
-                    'Income',
-                  )),
-              OutlinedButton(
-                  onPressed: () {
-                    controller.filterCategory(0);
-                  },
-                  child: Text(
-                    'Expanse',
-                  )),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Obx(
-            () => Expanded(
-              child: ListView.builder(
-                itemCount: controller.budgetList.length,
-                itemBuilder: (context, index) => Card(
-                  color: controller.budgetList[index].isIncome == 1
-                      ? Colors.green.shade100
-                      : Colors.red.shade100,
-                  child: ListTile(
-                    leading: Text(controller.budgetList[index].id.toString()),
-                    title: Text(controller.budgetList[index].amount.toString()),
-                    subtitle: Text(
-                        "${controller.budgetList[index].category!} - ${controller.budgetList[index].date!}"),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            editBox(context, controller.budgetList[index]);
-                          },
-                          icon: const Icon(Icons.edit,
-                           color: Colors.blueAccent,),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            controller
-                                .deleteData(controller.budgetList[index].id!);
-                          },
-                          icon: const Icon(Icons.delete,
-                           color: Colors.redAccent,),
-                        ),
-                      ],
+                    "Balance: ${controller.balance}",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: controller.balance > 0
+                          ? Colors.green.shade800
+                          : Colors.red.shade800,
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+            Container(
+              height: 240,
+              padding: const EdgeInsets.all(25),
+              color: Colors.grey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CircleAvatar(
+                    radius: 35,
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: AssetImage(
+                      'assets/profile.jpg',
+                    ),
+                  ),
+                  const Spacer(),
+                  Text(
+                    "\$${controller.balance}",
+                    style: const TextStyle(
+                      letterSpacing: 1,
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Row(
+                    children: [
+                      Text(
+                        "Priyam Tripathi".toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        "DATE: ",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15,
+                          letterSpacing: 1,
+                          color: Colors.white.withOpacity(0.8),
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        "22-12-2024",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 1,
+                          color: Colors.white.withOpacity(0.8),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      OutlinedButton(
+                        onPressed: () {
+                          controller.fetchData();
+                        },
+                        child: const Text('All'),
+                      ),
+                      OutlinedButton(
+                        onPressed: () {
+                          controller.filterCategory(1);
+                        },
+                        child: const Text('Income'),
+                      ),
+                      OutlinedButton(
+                        onPressed: () {
+                          controller.filterCategory(0);
+                        },
+                        child: const Text('Expense'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            Expanded(
+              child: Obx(
+                () => ListView.builder(
+                  itemCount: controller.budgetList.length,
+                  itemBuilder: (context, index) {
+                    final item = controller.budgetList[index];
+                    return Card(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      elevation: 6,
+                      shadowColor: Colors.black.withOpacity(0.3),
+                      color: item.isIncome == 1
+                          ? Colors.green.shade100
+                          : Colors.red.shade100,
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: item.isIncome == 1
+                              ? Colors.green.shade400
+                              : Colors.red.shade400,
+                          child: Icon(
+                            item.isIncome == 1
+                                ? Icons.arrow_upward
+                                : Icons.arrow_downward,
+                            color: Colors.white,
+                          ),
+                        ),
+                        title: Text(
+                          "\$${item.amount}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: item.isIncome == 1
+                                ? Colors.green.shade800
+                                : Colors.red.shade800,
+                          ),
+                        ),
+                        subtitle: Text("${item.category} - ${item.date}"),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                editBox(context, item);
+                              },
+                              icon: const Icon(Icons.edit,
+                                  color: Colors.blueAccent),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                controller.deleteData(item.id!);
+                              },
+                              icon: const Icon(Icons.delete,
+                                  color: Colors.redAccent),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -238,7 +277,8 @@ class _HomePageState extends State<HomePage> {
         },
         child: const Icon(Icons.add),
       ),
-      bottomNavigationBar:  BottomNavigationBar(currentIndex: _selectedIndex,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         selectedItemColor: Colors.blueAccent,
         unselectedItemColor: Colors.grey,
@@ -258,10 +298,9 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
-          ),],),
-
+          ),
+        ],
+      ),
     );
   }
 }
-
-
