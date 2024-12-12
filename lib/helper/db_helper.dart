@@ -72,16 +72,18 @@ class DbHelper {
 
  Future<void> updateRecord(int id,int isIncome,double amount,String date,String category)
  async {
-   try{
      Database? db = await database;
      log('message');
      String query = '''UPDATE $_tableName SET amount = ?,category = ?, isIncome = ?, date = ? WHERE id = ?''';
      List args = [amount,category,isIncome,date,id];
      await db!.rawUpdate(query,args);
-   }catch(e)
-   {
-     log(e.toString());
-   }
+ }
+ Future<List<Map<String, Object?>>> filterCategory(int isIncome)
+ async {
+   Database? db = await database;
+   String query = "SELECT * FROM $_tableName WHERE isIncome=?";
+   List args = [isIncome];
+   return await db!.rawQuery(query,args);
  }
 
 }
