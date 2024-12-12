@@ -85,5 +85,12 @@ class DbHelper {
    List args = [isIncome];
    return await db!.rawQuery(query,args);
  }
+ Future<List<Map<String, Object?>>> filterBySearch(String search)
+ async {
+   Database? db = await database;
+   String query = "SELECT * FROM $_tableName WHERE category  LIKE '$search%'";
+   // List args = [search];
+   return await db!.rawQuery(query);
+ }
 
 }
