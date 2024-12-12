@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     });
 
     if (index == 3) {
-      Get.toNamed('/profile');
+      Get.toNamed('/user');
     }
   }
 
@@ -189,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        "22-12-2024",
+                        "24-12-2024",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           letterSpacing: 1,

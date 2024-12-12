@@ -4,11 +4,24 @@ import 'package:budget_tracker_app/helper/db_helper.dart';
 import 'package:budget_tracker_app/modal/budget_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeController extends GetxController {
   TextEditingController txtAmount = TextEditingController();
   TextEditingController txtCategory = TextEditingController();
   TextEditingController txtSearch = TextEditingController();
+  RxBool isRegistered = false.obs;
+
+  Future<void> setPreference(bool value) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    isRegistered.value = true;
+    pref.setBool('isRegistered', value);
+  }
+
+  Future<void> getPreference() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    isRegistered.value = pref.getBool('isRegistered') ?? false ;
+  }
 
   RxList<Budget> budgetList = <Budget>[].obs;
   RxDouble income = 0.0.obs;
@@ -20,6 +33,7 @@ class HomeController extends GetxController {
   Future<void> onInit() async {
     //   TODO: implement onInit
     await DbHelper.dbHelper.database;
+    await getPreference();
     fetchData();
     super.onInit();
   }

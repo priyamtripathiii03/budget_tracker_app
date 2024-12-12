@@ -13,26 +13,30 @@ class BudgetApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      getPages: [
-        GetPage(
-          name: '/',
-          page: () => SplashScreen(),
+    return Obx(
+      () => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        getPages: [
+          GetPage(
+            name: '/',
+            page: () => SplashScreen(),
+            // HomePage route
+          ),
+          GetPage(
+            name: '/user',
+            page: () => UserProfilePage(),
           // HomePage route
-        ),
-        GetPage(
-          name: '/user',
-          page: () => UserProfilePage(),
-        // HomePage route
-        ),
-        GetPage(
-          name: '/home',
-          page: () => HomePage(),
-          // Profile Page route
-        ),
-      ],
+          ),
+          GetPage(
+            name: '/home',
+            page: () => HomePage(),
+            // Profile Page route
+          ),
+        ],
+
+        home: controller.isRegistered.value ? HomePage() : SplashScreen(),
+
+      ),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:budget_tracker_app/views/home_page_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,7 +20,6 @@ class UserProfileController extends GetxController {
 class UserProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(UserProfileController());
     return Scaffold(
       appBar: AppBar(
         elevation: 12,
@@ -52,10 +52,10 @@ class UserProfilePage extends StatelessWidget {
             Obx(() {
               return CircleAvatar(
                 radius: 60,
-                backgroundImage: controller.profileImage.value != null
-                    ? FileImage(controller.profileImage.value!)
+                backgroundImage: usercontroller.profileImage.value != null
+                    ? FileImage(usercontroller.profileImage.value!)
                     : AssetImage('assets/profile.jpg') as ImageProvider,
-                child: controller.profileImage.value == null
+                child: usercontroller.profileImage.value == null
                     ? Icon(Icons.person, size: 60, color: Colors.white)
                     : null,
               );
@@ -72,14 +72,14 @@ class UserProfilePage extends StatelessWidget {
                         ListTile(
                           title: Text('Pick from Gallery'),
                           onTap: () {
-                            controller.pickImage(ImageSource.gallery);
+                            usercontroller.pickImage(ImageSource.gallery);
                             Get.back();
                           },
                         ),
                         ListTile(
                           title: Text('Take a Photo'),
                           onTap: () {
-                            controller.pickImage(ImageSource.camera);
+                            usercontroller.pickImage(ImageSource.camera);
                             Get.back();
                           },
                         ),
@@ -94,7 +94,7 @@ class UserProfilePage extends StatelessWidget {
             SizedBox(height: 20),
             TextField(
               onChanged: (value) {
-                controller.username.value = value;
+                usercontroller.username.value = value;
               },
               decoration: InputDecoration(
                 labelText: 'Username',
@@ -105,7 +105,7 @@ class UserProfilePage extends StatelessWidget {
             SizedBox(height: 20),
             Obx(() {
               return Text(
-                'Namaste, ${controller.username.value}',
+                'Namaste, ${usercontroller.username.value}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               );
             }),
@@ -114,6 +114,7 @@ class UserProfilePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
+          controller.setPreference(true);
           Navigator.of(context).pushNamed('/home');
         },
         child: const Icon(Icons.arrow_forward),
