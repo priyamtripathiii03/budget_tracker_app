@@ -32,7 +32,9 @@ class DbHelper {
       amount REAL,
       isIncome INTEGER,
       date TEXT,
-      category TEXT
+      category TEXT,
+      name TEXT,
+      img BLOB
       )''';
         await db.execute(query);
       },);

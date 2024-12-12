@@ -2,8 +2,10 @@ import 'package:budget_tracker_app/controller/home_controller.dart';
 import 'package:budget_tracker_app/views/components/insert_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'profile_page.dart';
 
 var controller = Get.put(HomeController());
+var usercontroller = Get.put(UserProfileController());
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,18 +16,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+  var username = ''.obs;
 
   final List<Widget> _pages = <Widget>[
     Center(child: Text("Home Page", style: TextStyle(fontSize: 30))),
     Center(child: Text("Income Page", style: TextStyle(fontSize: 30))),
     Center(child: Text("Expense Page", style: TextStyle(fontSize: 30))),
-    Center(child: Text("Profile Page", style: TextStyle(fontSize: 30))),
+    // Placeholder for Profile page
+    Container(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (index == 3) {
+      Get.toNamed('/profile');
+    }
   }
 
   @override
@@ -35,10 +43,21 @@ class _HomePageState extends State<HomePage> {
         elevation: 12,
         shadowColor: Colors.black.withOpacity(0.3),
         backgroundColor: Colors.blueAccent,
-        title: const Text(
-          "Namaste, Priyam...",
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),
+        leading: InkWell(
+          onTap: () {
+            Navigator.of(context).pushNamed('/');
+          },
+          child: Icon(
+            Icons.person,
+            color: Colors.white,
+          ),
+        ),
+        title: Obx(
+          () => Text(
+            'Namaste, ${usercontroller.username.value}',
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),
+          ),
         ),
         bottom: PreferredSize(
           preferredSize: const Size(double.infinity, 60),
@@ -119,8 +138,12 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
               height: 240,
+              width: 430,
               padding: const EdgeInsets.all(25),
-              color: Colors.grey,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -144,12 +167,14 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 2),
                   Row(
                     children: [
-                      Text(
-                        "Priyam Tripathi".toUpperCase(),
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                      Obx(
+                        () => Text(
+                          '${usercontroller.username.value}'.toUpperCase(),
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       const Spacer(),
@@ -173,34 +198,47 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      OutlinedButton(
-                        onPressed: () {
-                          controller.fetchData();
-                        },
-                        child: const Text('All'),
-                      ),
-                      OutlinedButton(
-                        onPressed: () {
-                          controller.filterCategory(1);
-                        },
-                        child: const Text('Income'),
-                      ),
-                      OutlinedButton(
-                        onPressed: () {
-                          controller.filterCategory(0);
-                        },
-                        child: const Text('Expense'),
-                      ),
-                    ],
-                  ),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
-            const SizedBox(height: 10),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    OutlinedButton(
+                      onPressed: () {
+                        controller.fetchData();
+                      },
+                      child: const Text(
+                        'All',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    OutlinedButton(
+                      onPressed: () {
+                        controller.filterCategory(1);
+                      },
+                      child: const Text(
+                        'Income',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    OutlinedButton(
+                      onPressed: () {
+                        controller.filterCategory(0);
+                      },
+                      child: const Text(
+                        'Expense',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+              ],
+            ),
             Expanded(
               child: Obx(
                 () => ListView.builder(
@@ -279,7 +317,12 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        onTap: (index) {
+          _onItemTapped(index);
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
         selectedItemColor: Colors.blueAccent,
         unselectedItemColor: Colors.grey,
         items: const <BottomNavigationBarItem>[

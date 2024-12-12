@@ -1,4 +1,5 @@
 import 'package:budget_tracker_app/views/home_page_dart.dart';
+import 'package:budget_tracker_app/views/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,19 @@ class BudgetApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      getPages: [GetPage(name: '/', page: () => const HomePage())],
+      initialRoute: '/',
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => UserProfilePage(),
+        // HomePage route
+        ),
+        GetPage(
+          name: '/home',
+          page: () => HomePage(),
+          // Profile Page route
+        ),
+      ],
     );
   }
 }
