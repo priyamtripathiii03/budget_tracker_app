@@ -5,29 +5,71 @@ import 'package:get/get.dart';
 
 var controller = Get.put(HomeController());
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  // Index for BottomNavigationBar
+  int _selectedIndex = 0;
+
+  // Pages for Bottom Navigation
+  final List<Widget> _pages = [
+    Center(child: Text("Home Page", style: TextStyle(fontSize: 30))),
+    Center(child: Text("Search Page", style: TextStyle(fontSize: 30))),
+    Center(child: Text("Profile Page", style: TextStyle(fontSize: 30))),
+  ];
+
+  // Bottom Navigation Bar item tap handler
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index; // Update the selected index
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 10,
-        shadowColor: Colors.black,
-        title: const Text(
-          "Namaste, Priyam...",
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25),
-        ),
-        bottom: PreferredSize(preferredSize: Size(double.infinity, 30), child: TextField(
-          onChanged: (value) {
-            controller.filterBySearch(value);
-          },
-          controller: controller.txtSearch,
-          decoration: InputDecoration(hintText: 'Search here...',suffixIcon: IconButton(onPressed: (){
-controller.filterBySearch(controller.txtSearch.text);
-          }, icon: Icon(Icons.search))),
-        ),),
+         elevation: 12,
+         shadowColor: Colors.black.withOpacity(0.3),
+         backgroundColor: Colors.blueAccent,
+         title: const Text(
+           "Namaste, Priyam...",
+           style: TextStyle(
+               fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),
+         ),
+        bottom: PreferredSize(
+           preferredSize: Size(double.infinity, 60),
+           child: Padding(
+             padding: const EdgeInsets.all(10.0),
+             child: TextField(
+               onChanged: (value) {
+                 controller.filterBySearch(value);
+               },
+               controller: controller.txtSearch,
+               decoration: InputDecoration(
+                 hintText: 'Search here...',
+                 hintStyle: TextStyle(color: Colors.grey.shade600),
+                 filled: true,
+                 fillColor: Colors.white,
+                 suffixIcon: IconButton(
+                   onPressed: () {
+                     controller.filterBySearch(controller.txtSearch.text);
+                   },
+                   icon: Icon(Icons.search, color: Colors.blueAccent),
+                 ),
+                 contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                 border: OutlineInputBorder(
+                   borderRadius: BorderRadius.circular(10),
+                   borderSide: BorderSide.none,
+                 ),
+               ),
+             ),
+           ),
+         ),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
@@ -168,14 +210,16 @@ controller.filterBySearch(controller.txtSearch.text);
                           onPressed: () {
                             editBox(context, controller.budgetList[index]);
                           },
-                          icon: const Icon(Icons.edit),
+                          icon: const Icon(Icons.edit,
+                           color: Colors.blueAccent,),
                         ),
                         IconButton(
                           onPressed: () {
                             controller
                                 .deleteData(controller.budgetList[index].id!);
                           },
-                          icon: const Icon(Icons.delete),
+                          icon: const Icon(Icons.delete,
+                           color: Colors.redAccent,),
                         ),
                       ],
                     ),
@@ -194,6 +238,30 @@ controller.filterBySearch(controller.txtSearch.text);
         },
         child: const Icon(Icons.add),
       ),
+      bottomNavigationBar:  BottomNavigationBar(currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        selectedItemColor: Colors.blueAccent,
+        unselectedItemColor: Colors.grey,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.money),
+            label: 'Income',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.monetization_on),
+            label: 'Expense',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),],),
+
     );
   }
 }
+
+
