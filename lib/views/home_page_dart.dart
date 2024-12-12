@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     Center(child: Text("Home Page", style: TextStyle(fontSize: 30))),
     Center(child: Text("Income Page", style: TextStyle(fontSize: 30))),
     Center(child: Text("Expense Page", style: TextStyle(fontSize: 30))),
-    // Placeholder for Profile page
+
     Container(),
   ];
 
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blueAccent,
         leading: InkWell(
           onTap: () {
-            Navigator.of(context).pushNamed('/');
+            Navigator.of(context).pushNamed('/user');
           },
           child: Icon(
             Icons.person,

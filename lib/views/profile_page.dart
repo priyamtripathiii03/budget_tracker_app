@@ -28,7 +28,7 @@ class UserProfilePage extends StatelessWidget {
         centerTitle: true,
         leading: InkWell(
           onTap: () {
-            Navigator.pop(context);
+            Navigator.of(context).pushNamed('/home');
           },
           child: const Icon(Icons.arrow_back,color: Colors.white,),
         ),

@@ -1,5 +1,6 @@
 import 'package:budget_tracker_app/views/home_page_dart.dart';
 import 'package:budget_tracker_app/views/profile_page.dart';
+import 'package:budget_tracker_app/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +19,11 @@ class BudgetApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: '/',
+          page: () => SplashScreen(),
+          // HomePage route
+        ),
+        GetPage(
+          name: '/user',
           page: () => UserProfilePage(),
         // HomePage route
         ),
