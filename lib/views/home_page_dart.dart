@@ -147,13 +147,13 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CircleAvatar(
-                    radius: 35,
-                    backgroundColor: Colors.transparent,
-                    backgroundImage: AssetImage(
-                      'assets/profile.jpg',
-                    ),
-                  ),
+                  CircleAvatar(
+                radius: 35,
+                backgroundImage: usercontroller.profileImage.value != null
+                    ? FileImage(usercontroller.profileImage.value!)
+                    : AssetImage('assets/profile.jpg') as ImageProvider,
+
+              ),
                   const Spacer(),
                   Text(
                     "\$${controller.balance}",
