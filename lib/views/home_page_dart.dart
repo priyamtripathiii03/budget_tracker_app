@@ -147,6 +147,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   CircleAvatar(
                 radius: 35,
                 backgroundImage: usercontroller.profileImage.value != null
