@@ -18,13 +18,13 @@ class UserDbHelper
     await db!.rawInsert(sql,args);
   }
 
-  Future<Map<String, Object?>> fetchData()
+  Future<List<Map<String, Object?>>> fetchData()
   async {
     Database? db = await database;
     String query = '''SELECT * FROM user''';
     List<Map<String, Object?>> userList = await db!.rawQuery(query);
 
-    return userList[0];
+    return userList;
   }
   Future<void> updateData({required String name})
   async {
