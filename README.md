@@ -19,11 +19,10 @@ Track Your Progress: Review your spending and make adjustments to stay within yo
      <img src="https://github.com/user-attachments/assets/e6f0a43e-a418-4554-bdbf-92c4857d24e0"height="35%" width="22%">
     <img src="https://github.com/user-attachments/assets/d0e4faac-f0f7-45b8-9d21-839d146297d3"height="35%" width="22%">
    <img src="https://github.com/user-attachments/assets/cbc6ddc2-cd6c-4697-9021-7b420e2b8a2e"height="35%" width="22%">
-     <img src="https://github.com/user-attachments/assets/712843bd-3f87-4d35-9f58-ef4fa9c24807"height="35%" width="22%">
-    <img src="https://github.com/user-attachments/assets/17200439-535d-4bad-85ea-797247eab33e"height="35%" width="22%">
+      <img src="https://github.com/user-attachments/assets/c3819a17-574d-4a90-b7ae-9b18af9f31d7"height="35%" width="22%">
+     <img src="https://github.com/user-attachments/assets/cb1ed1b3-5f20-406e-aa34-7d30ac5123e2"height="35%" width="22%">
     <img src="https://github.com/user-attachments/assets/8ccf9b24-d411-4618-981e-568dffb7b421"height="35%" width="22%">
 </p>
-
 
 
 
