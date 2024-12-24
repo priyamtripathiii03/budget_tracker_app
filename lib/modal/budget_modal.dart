@@ -20,3 +20,4 @@ class Budget {
         isIncome: m1['isIncome']);
   }
 }
+

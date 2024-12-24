@@ -13,8 +13,7 @@ class BudgetApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => GetMaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         getPages: [
           GetPage(
@@ -36,7 +35,6 @@ class BudgetApp extends StatelessWidget {
 
         home: controller.isRegistered.value ? const HomePage() : const SplashScreen(),
 
-      ),
     );
   }
 }

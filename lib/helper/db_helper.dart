@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -15,7 +14,6 @@ class DbHelper {
   Future<void> deleteDb() async {
     var path = await getDatabasesPath();
     var dbPath = join(path, 'budget.db');
-
     await deleteDatabase(dbPath);
   }
 
@@ -23,11 +21,12 @@ class DbHelper {
     var dbPath = await getDatabasesPath();
     var path = join(dbPath,'budget.db');
 
+
     _database = await openDatabase(
       path,
       version: 1,
       onCreate: (db, version) async {
-        String query = '''CREATE TABLE budget(
+        String query = '''CREATE TABLE $_tableName(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       amount REAL,
       isIncome INTEGER,
@@ -36,7 +35,17 @@ class DbHelper {
       name TEXT,
       img BLOB
       )''';
+
+        String userQuery = '''CREATE TABLE user(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        email TEXT,
+        phone TEXT,
+        img BLOB
+        )''';
+
         await db.execute(query);
+        await db.execute(userQuery);
       },);
     return _database;
   }
