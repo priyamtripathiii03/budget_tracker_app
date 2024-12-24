@@ -32,9 +32,9 @@ class UserProfilePage extends StatelessWidget {
           },
           child: const Icon(Icons.arrow_back,color: Colors.white,),
         ),
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Icon(Icons.settings,color: Colors.white,),
           )
         ],
@@ -54,30 +54,28 @@ class UserProfilePage extends StatelessWidget {
                 radius: 60,
                 backgroundImage: controller.profileImage.value != null
                     ? FileImage(controller.profileImage.value!)
-                    : AssetImage('assets/profile.jpg') as ImageProvider,
-                child: controller.profileImage.value == null
-                    ? Icon(Icons.person, size: 60, color: Colors.white)
-                    : null,
+                    : const AssetImage('assets/profile.jpg') as ImageProvider,
+
               );
             }),
             ElevatedButton(
               onPressed: () {
                 Get.bottomSheet(
                   Container(
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     color: Colors.white,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ListTile(
-                          title: Text('Pick from Gallery'),
+                          title: const Text('Pick from Gallery'),
                           onTap: () {
                             controller.pickImage(ImageSource.gallery);
                             Get.back();
                           },
                         ),
                         ListTile(
-                          title: Text('Take a Photo'),
+                          title: const Text('Take a Photo'),
                           onTap: () {
                             controller.pickImage(ImageSource.camera);
                             Get.back();
@@ -89,24 +87,24 @@ class UserProfilePage extends StatelessWidget {
                   isScrollControlled: true,
                 );
               },
-              child: Text('Change Profile Picture'),
+              child: const Text('Change Profile Picture'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               onChanged: (value) {
                 controller.username.value = value;
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Username',
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.person),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Obx(() {
               return Text(
                 'Namaste, ${controller.username.value}',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               );
             }),
           ],

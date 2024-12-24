@@ -19,10 +19,9 @@ class _HomePageState extends State<HomePage> {
   var username = ''.obs;
 
   final List<Widget> _pages = <Widget>[
-    Center(child: Text("Home Page", style: TextStyle(fontSize: 30))),
-    Center(child: Text("Income Page", style: TextStyle(fontSize: 30))),
-    Center(child: Text("Expense Page", style: TextStyle(fontSize: 30))),
-
+    const Center(child: Text("Home Page", style: TextStyle(fontSize: 30))),
+    const Center(child: Text("Income Page", style: TextStyle(fontSize: 30))),
+    const Center(child: Text("Expense Page", style: TextStyle(fontSize: 30))),
     Container(),
   ];
 
@@ -47,7 +46,7 @@ class _HomePageState extends State<HomePage> {
           onTap: () {
             Navigator.of(context).pushNamed('/user');
           },
-          child: Icon(
+          child: const Icon(
             Icons.person,
             color: Colors.white,
           ),
@@ -55,7 +54,7 @@ class _HomePageState extends State<HomePage> {
         title: Obx(
           () => Text(
             'Namaste, ${usercontroller.username.value}',
-            style: TextStyle(
+            style: const TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),
           ),
         ),
@@ -149,11 +148,10 @@ class _HomePageState extends State<HomePage> {
                 children: [
 
                   CircleAvatar(
-                radius: 35,
+                radius: 45,
                 backgroundImage: usercontroller.profileImage.value != null
                     ? FileImage(usercontroller.profileImage.value!)
-                    : AssetImage('assets/profile.jpg') as ImageProvider,
-
+                    : const AssetImage('assets/profile.jpg') as ImageProvider,
               ),
                   const Spacer(),
                   Text(
@@ -171,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                       Obx(
                         () => Text(
                           '${usercontroller.username.value}'.toUpperCase(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w500,
                             color: Colors.white,

@@ -19,7 +19,7 @@ class BudgetApp extends StatelessWidget {
         getPages: [
           GetPage(
             name: '/',
-            page: () => SplashScreen(),
+            page: () => const SplashScreen(),
             // HomePage route
           ),
           GetPage(
@@ -29,12 +29,12 @@ class BudgetApp extends StatelessWidget {
           ),
           GetPage(
             name: '/home',
-            page: () => HomePage(),
+            page: () => const HomePage(),
             // Profile Page route
           ),
         ],
 
-        home: controller.isRegistered.value ? HomePage() : SplashScreen(),
+        home: controller.isRegistered.value ? const HomePage() : const SplashScreen(),
 
       ),
     );

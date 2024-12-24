@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:budget_tracker_app/helper/db_helper.dart';
 import 'package:budget_tracker_app/modal/budget_modal.dart';
 import 'package:flutter/material.dart';
