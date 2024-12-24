@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
         ),
         title: Obx(
           () => Text(
-            'Namaste, ${usercontroller.username.value}',
+            'Namaste, ${userController.txtName.text}'.toUpperCase(),
             style: const TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),
           ),
@@ -168,7 +168,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Obx(
                         () => Text(
-                          '${usercontroller.username.value}'.toUpperCase(),
+                          '${userController.txtName.text}'.toUpperCase(),
                           style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w500,

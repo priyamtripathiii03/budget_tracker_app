@@ -3,6 +3,10 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+import '../controller/user_controller.dart';
+
+var userController = Get.put(UserController());
+
 class UserProfileController extends GetxController {
   var username = ''.obs;
   var profileImage = Rxn<File>();
@@ -16,6 +20,7 @@ class UserProfileController extends GetxController {
     }
   }
 }
+
 class UserProfilePage extends StatelessWidget {
   const UserProfilePage({super.key});
 
@@ -32,12 +37,18 @@ class UserProfilePage extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pushNamed('/home');
           },
-          child: const Icon(Icons.arrow_back,color: Colors.white,),
+          child: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
         ),
         actions: const [
           Padding(
             padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.settings,color: Colors.white,),
+            child: Icon(
+              Icons.settings,
+              color: Colors.white,
+            ),
           )
         ],
         title: const Text(
@@ -57,7 +68,6 @@ class UserProfilePage extends StatelessWidget {
                 backgroundImage: controller.profileImage.value != null
                     ? FileImage(controller.profileImage.value!)
                     : const AssetImage('assets/profile.jpg') as ImageProvider,
-
               );
             }),
             ElevatedButton(
@@ -93,9 +103,7 @@ class UserProfilePage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextField(
-              onChanged: (value) {
-                controller.username.value = value;
-              },
+              controller: userController.txtName,
               decoration: const InputDecoration(
                 labelText: 'Username',
                 border: OutlineInputBorder(),
@@ -105,8 +113,9 @@ class UserProfilePage extends StatelessWidget {
             const SizedBox(height: 20),
             Obx(() {
               return Text(
-                'Namaste, ${controller.username.value}',
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                'Namaste, ${userController.txtName.text}',
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               );
             }),
           ],
@@ -114,8 +123,8 @@ class UserProfilePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          // controller.
-
+          // userController.txtName.text
+          userController.registerUser(userController.txtName.text);
           Navigator.of(context).pushNamed('/home');
         },
         child: const Icon(Icons.arrow_forward),

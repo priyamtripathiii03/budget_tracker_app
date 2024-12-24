@@ -2,7 +2,7 @@ import 'package:budget_tracker_app/helper/user_db_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class UserProfileController extends GetxController
+class UserController extends GetxController
 {
   var txtName = TextEditingController();
   var txtEmail = TextEditingController();
@@ -15,10 +15,9 @@ class UserProfileController extends GetxController
     UserDbHelper.userDbHelper.database;
   }
 
-  Future<void> registerUser(String name,)
+  Future<void> registerUser(String name)
   async {
-
-    await UserDbHelper.userDbHelper.insertUser(name,);
+    await UserDbHelper.userDbHelper.insertUser(name);
   }
 
 }
