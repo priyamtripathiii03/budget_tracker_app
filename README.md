@@ -28,10 +28,8 @@ Track Your Progress: Review your spending and make adjustments to stay within yo
 
 
 
+https://github.com/user-attachments/assets/e4fb8985-e98b-4311-ae28-f0e00ba48671
+
+
 https://github.com/user-attachments/assets/bc5cb9f1-0f19-40fa-993a-02a759f983aa
-
-
-
-
-https://github.com/user-attachments/assets/fe8f3503-5c91-4f33-987e-89eb4647d12e
 
