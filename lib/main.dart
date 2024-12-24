@@ -24,7 +24,7 @@ class BudgetApp extends StatelessWidget {
           ),
           GetPage(
             name: '/user',
-            page: () => UserProfilePage(),
+            page: () => const UserProfilePage(),
           // HomePage route
           ),
           GetPage(

@@ -206,33 +206,36 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    OutlinedButton(
-                      onPressed: () {
-                        controller.fetchData();
-                      },
-                      child: const Text(
-                        'All',
-                        style: TextStyle(color: Colors.white),
-                      ),
+                    OutlinedButton.icon(
+                    onPressed: () {
+                      controller.fetchData();
+                    },
+                    icon: const Icon(Icons.list, color: Colors.white),
+                    label: const Text(
+                      'All',
+                      style: TextStyle(color: Colors.white),
                     ),
-                    OutlinedButton(
-                      onPressed: () {
-                        controller.filterCategory(1);
-                      },
-                      child: const Text(
-                        'Income',
-                        style: TextStyle(color: Colors.white),
-                      ),
+                  ),
+                    OutlinedButton.icon(
+                    onPressed: () {
+                      controller.filterCategory(1);
+                    },
+                    icon: const Icon(Icons.attach_money, color: Colors.white),
+                    label: const Text(
+                      'Income',
+                      style: TextStyle(color: Colors.white),
                     ),
-                    OutlinedButton(
-                      onPressed: () {
-                        controller.filterCategory(0);
-                      },
-                      child: const Text(
-                        'Expense',
-                        style: TextStyle(color: Colors.white),
-                      ),
+                  ),
+                    OutlinedButton.icon(
+                    onPressed: () {
+                      controller.filterCategory(0);
+                    },
+                    icon: const Icon(Icons.remove_circle, color: Colors.white),
+                    label: const Text(
+                      'Expense',
+                      style: TextStyle(color: Colors.white),
                     ),
+                  ),
                   ],
                 ),
                 const SizedBox(height: 10),
