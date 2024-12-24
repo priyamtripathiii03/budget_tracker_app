@@ -1,4 +1,4 @@
-# 💰 Budget Tracker App
+![Screenshot_20241224_101640](https://github.com/user-attachments/assets/84a0da7e-f424-4ce7-9c0b-d3ff2d2206ea)# 💰 Budget Tracker App
 
 The Budget Tracker App helps you manage your finances effectively by allowing you to easily track your spending and stay within your budget. With a sleek and intuitive interface, this app provides features for adding, updating, and deleting budget items, as well as searching by category or description. Whether you're saving for a vacation 🌴, managing daily expenses 🏠, or tracking shopping habits 🛍️, this app is here to help you stay on top of your financial goals.
 
@@ -16,6 +16,7 @@ Search Your Budget: Use the search bar to find specific items based on category 
 Track Your Progress: Review your spending and make adjustments to stay within your financial goals.
 
 <p>
+     <img src="https://github.com/user-attachments/assets/e6f0a43e-a418-4554-bdbf-92c4857d24e0"height="35%" width="22%">
     <img src="https://github.com/user-attachments/assets/d0e4faac-f0f7-45b8-9d21-839d146297d3"height="35%" width="22%">
    <img src="https://github.com/user-attachments/assets/cbc6ddc2-cd6c-4697-9021-7b420e2b8a2e"height="35%" width="22%">
      <img src="https://github.com/user-attachments/assets/712843bd-3f87-4d35-9f58-ef4fa9c24807"height="35%" width="22%">
