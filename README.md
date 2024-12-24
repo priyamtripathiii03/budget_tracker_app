@@ -23,6 +23,7 @@ Track Your Progress: Review your spending and make adjustments to stay within yo
      <img src="https://github.com/user-attachments/assets/cb1ed1b3-5f20-406e-aa34-7d30ac5123e2"height="35%" width="22%">
     <img src="https://github.com/user-attachments/assets/8ccf9b24-d411-4618-981e-568dffb7b421"height="35%" width="22%">
       <img src="https://github.com/user-attachments/assets/cfcd2ccc-a5a6-409c-a619-6a3da2e7493b"height="35%" width="22%">
+      <img src="https://github.com/user-attachments/assets/adf78709-0f8e-4d73-8875-7fc480e063b0"height="35%" width="22%">
 </p>
 
 
